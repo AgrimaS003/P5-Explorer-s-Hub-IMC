@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorer's Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- <script defer src="script.js"></script> -->
+  <style>
+    /* Add styles to ensure the map takes up the full viewport */
+    #map {
+      height: 80vh; /* Set the height of the map */
+      width: 100%; /* Full width */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="attractions.html">Attractions</a>
+      <a href="map.html">Map</a>
+      <a href="tips.html">Local Tips</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section>
+    <h2>Interactive Map of Paris</h2>
+    <div id="map"></div>
+  </section>
+
+  <script>
+    function initMap() {
+      // Set the location of Paris
+      const paris = { lat: 48.8566, lng: 2.3522 };
+
+      // Create a map centered at Paris
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 12,
+        center: paris,
+      });
+
+      // Add a marker at the Eiffel Tower
+      const marker = new google.maps.Marker({
+        position: { lat: 48.8584, lng: 2.2945 },
+        map: map,
+        title: "Eiffel Tower",
+      });
+
+      // Add more markers for other attractions as needed
+      const attractions = [
+        { name: "Louvre Museum", position: { lat: 48.8606, lng: 2.3376 } },
+        { name: "Arc de Triomphe", position: { lat: 48.8738, lng: 2.2950 } },
+        { name: "Cathedral Notre-Dame", position: { lat: 48.8534, lng: 2.3499 } },
+        { name: "Musée d'Orsay", position: { lat: 48.8610, lng: 2.3266 } },
+        { name: "Palais Garnier", position: { lat: 48.8719, lng: 2.3314 } },
+        { name: "Sainte-Chapelle", position: { lat: 48.8554, lng: 2.3440 } },
+        { name: "Palace of Versailles", position: { lat: 48.8049, lng: 2.1204 } }
+      ];
+
+      attractions.forEach(attraction => {
+        new google.maps.Marker({
+          position: attraction.position,
+          map: map,
+          title: attraction.name,
+        });
+      });
+    }
+  </script>
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWSLGFnRITE1Og-pyrIr7_vGo-dmvzYyo&callback=initMap">
+  </script>
+</body>
+</html>
